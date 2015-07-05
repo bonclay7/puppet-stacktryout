@@ -5,7 +5,7 @@ brings a simple tool to have a clean OpenStack Juno installation on a <b>Single 
 all in one OpenStack installation perfects for testing purposes.
 
 <pre><code>
-$ git clone https://github.com/bonclay7/puppet-stacktryout
+$ git clone https://github.com/bonclay7/puppet-stacktryout.git
 </code></pre>
 
 
