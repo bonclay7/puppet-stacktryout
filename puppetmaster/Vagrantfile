@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
 
     # Acquire a real address on your private network with your physical network interface
     #stackpuppetmaster.vm.network "public_network", bridge: "en4: Thunderbolt Ethernet"
-    #stackpuppetmaster.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    stackpuppetmaster.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
 
   end
 
