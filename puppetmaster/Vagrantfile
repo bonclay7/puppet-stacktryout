@@ -46,13 +46,13 @@ Vagrant.configure(2) do |config|
        # Make a backup
        mv /etc/puppet/hiera.yaml /etc/puppet/hiera.yaml.$DATEE
      fi
-     cp etc/puppet/hiera.yaml /etc/puppet/hiera.yaml
+     cp /vagrant/etc/puppet/hiera.yaml /etc/puppet/hiera.yaml
 
      if [ -e /etc/hiera.yaml ] ; then
        rm /etc/hiera.yaml
      fi
      ln -s /etc/puppet/hiera.yaml /etc/hiera.yaml
-     cp -rf etc/puppet/hieradata /etc/puppet/
+     cp -rf /vagrant/etc/puppet/hieradata /etc/puppet/
 
      # creating missing directories
      mkdir -p /etc/puppet/environments/production/{modules,manifests}

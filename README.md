@@ -15,7 +15,7 @@ We use vagrant with VirtualBox to build up quickly a server running a puppet mas
 but you can also, install the puppet master on the same node as your OpenStack server.
 
 <pre><code>
-$ cd puppet-stacktryout-master/puppetmaster
+$ cd puppet-stacktryout/puppetmaster
 $ vagrant up
 $ vagrant ssh
 </code></pre>
