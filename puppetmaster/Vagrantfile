@@ -55,8 +55,11 @@ Vagrant.configure(2) do |config|
      cp -rf /vagrant/etc/puppet/hieradata /etc/puppet/
 
      # creating missing directories
-     echo "* Creating missing directories"
+     echo "* Setting puppet directories"
      mkdir -p /etc/puppet/environments/production/{modules,manifests}
+
+     # copying OpenStack puppet files and modules
+     cp -R /vagrant/etc/puppet/manifests /etc/puppet/environments/production/
 
      echo "* Cleaning /tmp"
      rm -f /tmp/puppetlabs-release-trusty.deb

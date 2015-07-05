@@ -30,6 +30,8 @@ $ wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
 $ sudo dpkg -i puppetlabs-release-trusty.deb
 $ sudo apt-get update
 $ sudo apt-get install puppet
-$ echo '192.168.1.98 stackpuppetmaster' >> /etc/hosts
+# echo '192.168.1.98 stackpuppetmaster' >> /etc/hosts
+# echo '[agent]' >> /etc/puppet/puppet.conf
+# echo 'server = stackpuppetmaster' >> /etc/puppet/puppet.conf
 $ sudo puppet agent --verbose --no-daemonize --onetime
 </code></pre>
