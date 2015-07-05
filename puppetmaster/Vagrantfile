@@ -1,0 +1,63 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.define "stackpuppetmaster" do |stackpuppetmaster|
+
+    stackpuppetmaster.vm.hostname = "stackpuppetmaster"
+
+    stackpuppetmaster.vm.network "private_network", type: "dhcp"
+
+    # Acquire a real address on your private network with your physical network interface
+    #stackpuppetmaster.vm.network "public_network", bridge: "en4: Thunderbolt Ethernet"
+    #stackpuppetmaster.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     DATEE=$(date +%F-%Hh%M)
+     # Install puppet master
+     echo "* Installing puppet master ..."
+     wget -q https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+     dpkg -i puppetlabs-release-trusty.deb
+     apt-get update >/dev/null
+     apt-get -y install ntp puppet puppetmaster-passenger git >/dev/null
+
+     # Get Puppet Conf
+     echo "* Pushing puppet conf into /etc/puppet/ ..."
+     if [ -e /etc/puppet/puppet.conf ] ; then
+       # Make a backup
+       mv /etc/puppet/puppet.conf /etc/puppet/puppet.conf.$DATEE
+     fi
+     cp /vagrant/etc/puppet/puppet.conf /etc/puppet/puppet.conf
+
+
+     # Get Hiera Conf
+     echo "* Push Hiera conf into /etc/puppet/"
+     if [ -e /etc/puppet/hiera.yaml ] ; then
+       # Make a backup
+       mv /etc/puppet/hiera.yaml /etc/puppet/hiera.yaml.$DATEE
+     fi
+     cp etc/puppet/hiera.yaml /etc/puppet/hiera.yaml
+
+     if [ -e /etc/hiera.yaml ] ; then
+       rm /etc/hiera.yaml
+     fi
+     ln -s /etc/puppet/hiera.yaml /etc/hiera.yaml
+     cp -rf etc/puppet/hieradata /etc/puppet/
+
+     # creating missing directories
+     mkdir -p /etc/puppet/environments/production/{modules,manifests}
+
+     # restart puppet master
+     service apache2 restart
+  SHELL
+end
