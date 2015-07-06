@@ -18,12 +18,12 @@ fi
 echo "*** Installing and configuring puppet ***"
 wget -q -P /tmp https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
 dpkg -i /tmp/puppetlabs-release-trusty.deb
-apt-get update
-apt-get -y install puppet
+apt-get update >/dev/null
+apt-get -y install puppet >/dev/null
 
 
 # configuring management network
-if [ "Z$BRIDGEIFACE" -n ]; then
+if [ $BRIDGEIFACE -n ]; then
   echo "*** Configuring management network ***"
   echo "auto $BRIDGEIFACE" >> /etc/network/interfaces
   echo "iface $BRIDGEIFACE inet manual" >> /etc/network/interfaces
