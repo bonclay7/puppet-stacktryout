@@ -18,6 +18,8 @@ but you can also, install the puppet master on the same node as your OpenStack s
 $ cd puppet-stacktryout/puppetmaster
 $ vagrant up
 $ vagrant ssh
+$ sudo sed -i "s/192.168.1.37/OPENSTACK IP/g" /etc/puppet/hieradata/production/common.yaml 
+$ sudo service apache2 restart
 </code></pre>
 
 ## Configuring the client (future OpenStack server)
@@ -38,7 +40,7 @@ And then :
 <pre><code>
 $ git clone https://github.com/bonclay7/puppet-stacktryout.git
 $ cd puppet-stacktryout/
-$ sudo sh prepare-openstack-server.sh
 $ sed -i "s/192.168.1.39/YOUR PUPPETMASTER IP/" prepare-openstack-server.sh
 $ sed -i "s/eth1/YOUR IFACE or LEAVE IT BLANK/" prepare-openstack-server.sh
+$ sudo sh prepare-openstack-server.sh
 </code></pre>
