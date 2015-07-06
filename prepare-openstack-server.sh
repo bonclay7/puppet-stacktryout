@@ -35,7 +35,7 @@ fi
 echo "*** Installing OpenStack ***"
 echo "$PUPPETMASTER stackpuppetmaster" >> /etc/hosts
 echo '[agent]' >> /etc/puppet/puppet.conf
-echo 'server = stackpuppetmaster' >> /etc/puppet/puppet.conf
+echo 'server = stackpuppetmaster.home' >> /etc/puppet/puppet.conf
 puppet agent --verbose --no-daemonize --onetime
 
 echo "*** Are we good ? ***"
