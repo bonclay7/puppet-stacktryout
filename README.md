@@ -22,16 +22,21 @@ $ vagrant ssh
 
 ## Configuring the client (future OpenStack server)
 
-We consider, at this point you have a Trusty Ubuntu Server (14.04) fresh install and running.
-First of all, we install puppet agent :
+We consider, at this point you have a Trusty Ubuntu Server (14.04) fresh install and running. Your Puppetmaster running as well.
+We can launch our allinone OpenStack server using the prepare-openstack-server.sh
+script. (do it as root)
+
+But You will need to update those two variables :
+<pre><code>
+# ** WARNING : Configure Properly this section **
+PUPPETMASTER='192.168.1.39'
+BRIDGEIFACE='eth1'
+</code></pre>
+
+And then :
 
 <pre><code>
-$ wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
-$ sudo dpkg -i puppetlabs-release-trusty.deb
-$ sudo apt-get update
-$ sudo apt-get install puppet
-# echo '192.168.1.98 stackpuppetmaster' >> /etc/hosts
-# echo '[agent]' >> /etc/puppet/puppet.conf
-# echo 'server = stackpuppetmaster' >> /etc/puppet/puppet.conf
-$ sudo puppet agent --verbose --no-daemonize --onetime
+$ git clone https://github.com/bonclay7/puppet-stacktryout.git
+$ cd puppet-stacktryout/
+$ sudo sh prepare-openstack-server.sh
 </code></pre>

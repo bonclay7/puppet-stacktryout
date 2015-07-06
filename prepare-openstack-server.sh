@@ -4,7 +4,7 @@ PRGNAME=$(basename $0)
 
 # ** WARNING : Configure Properly this section **
 PUPPETMASTER='192.168.1.39'
-MGMTIFACE='eth1'
+BRIDGEIFACE='eth1'
 
 
 # Check if we are root
@@ -23,11 +23,13 @@ apt-get -y install puppet
 
 
 # configuring management network
-echo "*** Configuring management network ***"
-echo "auto $MGMTIFACE" >> /etc/network/interfaces
-echo "iface $MGMTIFACE inet manual" >> /etc/network/interfaces
-echo '    up ifconfig $IFACE 0.0.0.0 up' >> /etc/network/interfaces
-echo '    up ifconfig $IFACE promisc' >> /etc/network/interfaces
+if [ "Z$BRIDGEIFACE" -n ]; then
+  echo "*** Configuring management network ***"
+  echo "auto $BRIDGEIFACE" >> /etc/network/interfaces
+  echo "iface $BRIDGEIFACE inet manual" >> /etc/network/interfaces
+  echo '    up ifconfig $IFACE 0.0.0.0 up' >> /etc/network/interfaces
+  echo '    up ifconfig $IFACE promisc' >> /etc/network/interfaces
+fi
 
 
 echo "*** Installing OpenStack ***"
