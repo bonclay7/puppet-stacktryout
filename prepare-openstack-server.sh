@@ -23,7 +23,7 @@ apt-get -y install puppet >/dev/null
 
 
 # configuring management network
-if [ $BRIDGEIFACE -n ]; then
+if [ $BRIDGEIFACE ]; then
   echo "*** Configuring management network ***"
   echo "auto $BRIDGEIFACE" >> /etc/network/interfaces
   echo "iface $BRIDGEIFACE inet manual" >> /etc/network/interfaces

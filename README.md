@@ -39,4 +39,6 @@ And then :
 $ git clone https://github.com/bonclay7/puppet-stacktryout.git
 $ cd puppet-stacktryout/
 $ sudo sh prepare-openstack-server.sh
+$ sed -i "s/192.168.1.39/YOUR PUPPETMASTER IP/" prepare-openstack-server.sh
+$ sed -i "s/eth1/YOUR IFACE or LEAVE IT BLANK/" prepare-openstack-server.sh
 </code></pre>
