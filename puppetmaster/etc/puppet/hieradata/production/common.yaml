@@ -1,3 +1,145 @@
 ---
   classes:
-    - linux    
+    - openstack::role::allinone
+
+  #OpenStack config
+  openstack::region: 'openstack'
+
+  ######## Networks
+  openstack::network::api: '192.168.1.0/24'
+  openstack::network::external: '192.168.22.0/24'
+  openstack::network::management: '192.168.1.0/24'
+  openstack::network::data: '192.168.1.0/24'
+
+  openstack::network::external::ippool::start: 192.168.17.10
+  openstack::network::external::ippool::end: 192.168.17.200
+  openstack::network::external::gateway: 192.168.22.2
+  openstack::network::external::dns: 192.168.22.2
+
+  ######## Private Neutron Network
+
+  openstack::network::neutron::private: '10.0.0.0/24'
+
+  ######## Fixed IPs (controllers)
+
+  openstack::controller::address::api: '192.168.1.37'
+  openstack::controller::address::management: '192.168.1.37'
+  openstack::storage::address::api: '192.168.1.37'
+  openstack::storage::address::management: '192.168.1.37'
+
+  ######## Database
+
+  openstack::mysql::root_password: 'aqwzsxedc'
+  openstack::mysql::service_password: 'aqwzsxedc'
+  openstack::mysql::allowed_hosts: ['localhost', '127.0.0.1', '192.168.1.%']
+
+  openstack::mysql::keystone::user: 'keystone'
+  openstack::mysql::keystone::pass: 'aqwzsxedc'
+
+  openstack::mysql::cinder::user: 'cinder'
+  openstack::mysql::cinder::pass: 'aqwzsxedc'
+
+  openstack::mysql::glance::user: 'glance'
+  openstack::mysql::glance::pass: 'aqwzsxedc'
+  openstack::glance::api_servers: ['192.168.1.37:9292']
+
+  openstack::mysql::nova::user: 'nova'
+  openstack::mysql::nova::pass: 'aqwzsxedc'
+
+  openstack::mysql::neutron::user: 'neutron'
+  openstack::mysql::neutron::pass: 'aqwzsxedc'
+
+  openstack::mysql::heat::user: 'heat'
+  openstack::mysql::heat::pass: 'aqwzsxedc'
+
+  ######## RabbitMQ
+
+  openstack::rabbitmq::user: 'openstack'
+  openstack::rabbitmq::password: 'aqwzsxedc'
+  openstack::rabbitmq::hosts: ['192.168.1.37:5672']
+
+  ######## Keystone
+
+  openstack::keystone::admin_token: '57f4703068d2e2606f8b'
+  openstack::keystone::admin_email: 'koffirodrigue@gmail.com'
+  openstack::keystone::admin_password: 'aqwzsxedc'
+
+  openstack::keystone::tenants:
+      "test":
+          description: "Test tenant"
+
+  openstack::keystone::users:
+      "admin":
+          password: "aqwzsxedc"
+          tenant: "test"
+          email: "admin@example.com"
+          admin: true
+      "demo":
+          password: "demo"
+          tenant: "test"
+          email: "demo@example.com"
+          admin: false
+
+  ######## Glance
+
+  openstack::glance::password: 'aqwzsxedc'
+
+  ######## Cinder
+
+  openstack::cinder::password: 'aqwzsxedc'
+  openstack::cinder::volume_size: '10G'
+
+  ######## Swift
+
+  openstack::swift::password: 'aqwzsxedc'
+  openstack::swift::hash_suffix: 'bonclay7'
+
+  ######## Nova
+
+  openstack::nova::libvirt_type: 'kvm'
+  openstack::nova::password: 'aqwzsxedc'
+
+  ######## Neutronaqwzsxedc
+
+  openstack::neutron::password: 'aqwzsxedc'
+  openstack::neutron::shared_secret: '021cd4acbbb465301f34'
+  openstack::neutron::core_plugin: 'ml2'
+  openstack::neutron::service_plugins: ['router', 'firewall', 'lbaas', 'vpnaas', 'metering']
+
+  ######## Ceilometer
+  openstack::ceilometer::address::management: '192.168.1.37'
+  openstack::ceilometer::mongo::username: 'mongo'
+  openstack::ceilometer::mongo::password: 'aqwzsxedc'
+  openstack::ceilometer::password: 'aqwzsxedc'
+  openstack::ceilometer::meteringsecret: '021cd4acbbb465301f34'
+
+  ######## Heat
+  openstack::heat::password: 'aqwzsxedc'
+  openstack::heat::encryption_key: '6adb2b5873b68a7d7a2e'
+
+
+  ######## Horizon
+
+  openstack::horizon::secret_key: 'ca57686f1bbdea4d5a98'
+
+  ######## Tempest
+
+  openstack::tempest::configure_images    : true
+  openstack::tempest::image_name          : 'Cirros'
+  openstack::tempest::image_name_alt      : 'Cirros'
+  openstack::tempest::username            : 'demo'
+  openstack::tempest::username_alt        : 'demo2'
+  openstack::tempest::username_admin      : 'test'
+  openstack::tempest::configure_network   : true
+  openstack::tempest::public_network_name : 'public'
+  openstack::tempest::cinder_available    : true
+  openstack::tempest::glance_available    : true
+  openstack::tempest::horizon_available   : true
+  openstack::tempest::nova_available      : true
+  openstack::tempest::neutron_available   : true
+  openstack::tempest::heat_available      : false
+  openstack::tempest::swift_available     : false
+
+  ######## Log levels
+  openstack::verbose: 'True'
+  openstack::debug: 'True'

@@ -61,6 +61,10 @@ Vagrant.configure(2) do |config|
      # copying OpenStack puppet files and modules
      cp -R /vagrant/etc/puppet/manifests /etc/puppet/environments/production/
 
+     #Installing OpenStack Puppet module
+     echo "* Downloading OpenStack Puppet module"
+     puppet module install puppetlabs-openstack --modulepath /etc/puppet/environments/production/modules/ >/dev/null
+
      echo "* Cleaning /tmp"
      rm -f /tmp/puppetlabs-release-trusty.deb
 
