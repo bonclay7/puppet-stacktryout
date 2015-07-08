@@ -69,7 +69,7 @@
           description: "Test tenant"
 
   openstack::keystone::users:
-      "admin":
+      "stackadmin":
           password: "aqwzsxedc"
           tenant: "test"
           email: "admin@example.com"

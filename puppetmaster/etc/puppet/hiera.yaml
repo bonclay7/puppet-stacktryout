@@ -6,5 +6,5 @@
   # Per environment data
   :datadir: /etc/puppet/hieradata/%{environment}/
 :hierarchy:
-  - nodes/%{::fqdn}
+  - "%{clientcert}"
   - common
