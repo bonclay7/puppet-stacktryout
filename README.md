@@ -45,6 +45,8 @@ $ sed -i "s/eth1/YOUR IFACE or LEAVE IT BLANK/" prepare-openstack-server.sh
 $ sudo sh prepare-openstack-server.sh
 </code></pre>
 
+## Boot an instance with Heat
+
 
 ## TO-DO
 - Fix Heat Domain Users (keystone user-role-add --user admin --tenant admin --role heat_stack_owner)

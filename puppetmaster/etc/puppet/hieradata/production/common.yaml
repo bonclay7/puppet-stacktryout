@@ -115,7 +115,8 @@
 
   ######## Heat
   openstack::heat::password: 'aqwzsxedc'
-  openstack::heat::encryption_key: '6adb2b5873b68a7d7a2e'
+  # openssl rand -hex 32
+  openstack::heat::encryption_key: '0ea819937f0176dbd3271c6b41412a25'
 
 
   ######## Horizon
