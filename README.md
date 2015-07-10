@@ -19,6 +19,8 @@ $ cd puppet-stacktryout/puppetmaster
 $ vagrant up
 $ vagrant ssh
 $ sudo sed -i "s/192.168.1.37/OPENSTACK IP/g" /etc/puppet/hieradata/production/common.yaml
+$ sed for 192.168.1.%
+$ sudo sed -i "s/192.168.1.%/MYSQL_ACCESS_CONFIG/" /etc/puppet/hieradata/production/common.yaml
 $ sudo service apache2 restart
 </code></pre>
 
@@ -50,3 +52,10 @@ $ sudo sh prepare-openstack-server.sh
 
 ## TO-DO
 - Fix Heat Domain Users (keystone user-role-add --user admin --tenant admin --role heat_stack_owner)
+- ssh-keygen and nova keypair-add
+
+nova keypair-list | awk '/ heat-instances-key / {print $2}'
+
+## ERROR on OpenStack
+volume_group = cinder-volumes
+debug with vgs
