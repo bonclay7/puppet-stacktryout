@@ -61,3 +61,4 @@ debug with vgs
 mongo db failed  
 /etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp:    bind_ip => ['127.0.0.1', $::openstack::config::controller_address_management],  
 horizon failed
+check for hardware acceleration with `egrep -c '(vmx|svm)' /proc/cpuinfo` > 0
