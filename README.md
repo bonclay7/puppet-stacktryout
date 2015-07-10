@@ -52,10 +52,12 @@ $ sudo sh prepare-openstack-server.sh
 
 ## TO-DO
 - Fix Heat Domain Users (keystone user-role-add --user admin --tenant admin --role heat_stack_owner)
-- ssh-keygen and nova keypair-add
 
 nova keypair-list | awk '/ heat-instances-key / {print $2}'
 
 ## ERROR on OpenStack
-volume_group = cinder-volumes
-debug with vgs
+volume_group = cinder-volumes  
+debug with vgs  
+mongo db failed  
+/etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp:    bind_ip => ['127.0.0.1', $::openstack::config::controller_address_management],  
+horizon failed

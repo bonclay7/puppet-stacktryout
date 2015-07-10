@@ -6,11 +6,13 @@ PRGNAME=$(basename $0)
 PUPPETMASTER='192.168.1.39'
 BRIDGEIFACE='eth1'
 
+#Setting Language
+export LC_ALL=`echo $LANG`
 
 # Check if we are root
 if [ "Z$USER" != "Zroot" ] ; then
   echo "You need to execute this script as root:"
-  echo "sudo $PRGNAME"
+  echo "sudo sh $PRGNAME"
   exit 1
 fi
 

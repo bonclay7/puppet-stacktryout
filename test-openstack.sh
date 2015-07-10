@@ -23,3 +23,7 @@ if [ "$?" != "0" ]; then
   echo "ERROR: An error occurred"
   exit -1
 fi
+
+echo "**Generating keypair for instances**"
+nova keypair-add cloud-instances-key > cloud-instances-key
+nova keypair-show cloud-instances-key | grep -E '^Public key.*$' | tee cloud-instances-key.pub
