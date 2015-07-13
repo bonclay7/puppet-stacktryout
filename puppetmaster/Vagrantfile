@@ -64,6 +64,8 @@ Vagrant.configure(2) do |config|
      #Installing OpenStack Puppet module
      echo "* Downloading OpenStack Puppet module"
      puppet module install puppetlabs-openstack --modulepath /etc/puppet/environments/production/modules/ >/dev/null
+     chmod u+w /etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp
+     sed -i 's/, $::openstack::config::controller_address_management//' /etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp
 
      echo "* Cleaning /tmp"
      rm -f /tmp/puppetlabs-release-trusty.deb

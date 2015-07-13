@@ -55,6 +55,5 @@ nova floatingip-associate
 ## Known errors
 - check volume_group = cinder-volumes on /etc/cinder/cinder.conf
 - debug cinder with vgs and pvs
-- check the file : /etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp:    bind_ip => ['127.0.0.1', $::openstack::config::controller_address_management],  
 - check for hardware acceleration with `egrep -c '(vmx|svm)' /proc/cpuinfo` > 0
 and replace virtualization by qemu if the result is zero on /etc/nova/nova-compute.conf
