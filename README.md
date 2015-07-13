@@ -4,10 +4,7 @@ This project gathers many projects from OpenStack and StackForge Puppet efforts 
 brings a simple tool to have a clean OpenStack Juno installation on a <b>Single Node</b>
 all in one OpenStack installation perfects for testing purposes.
 
-<pre><code>
-$ git clone https://github.com/bonclay7/puppet-stacktryout.git
-</code></pre>
-
+<b>WARNING</b> : This project has been tested only with Ubuntu 14.04 and might not work with other versions or OS without modifications
 
 
 ## Puppet Master
@@ -15,10 +12,11 @@ We use vagrant with VirtualBox to build up quickly a server running a puppet mas
 but you can also, install the puppet master on the same node as your OpenStack server.
 
 <pre><code>
+$ git clone https://github.com/bonclay7/puppet-stacktryout.git
 $ cd puppet-stacktryout/puppetmaster
 $ vagrant up
-$ vagrant ssh
-$ sudo service apache2 restart
+$ vagrant ssh # if necessary, for example get the ip address
+$ sudo service apache2 restart # to restart puppet
 </code></pre>
 
 ## Configuring the client (future OpenStack server)
