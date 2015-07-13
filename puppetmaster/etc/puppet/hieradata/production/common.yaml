@@ -6,15 +6,15 @@
   openstack::region: 'openstack'
 
   ######## Networks
-  openstack::network::api: '192.168.1.0/24'
-  openstack::network::external: '192.168.22.0/24'
-  openstack::network::management: '192.168.1.0/24'
-  openstack::network::data: '192.168.1.0/24'
+  openstack::network::api: '127.0.0.1/24'
+  openstack::network::external: '192.168.17.0/24'
+  openstack::network::management: '127.0.0.1/24'
+  openstack::network::data: '127.0.0.1/24'
 
   openstack::network::external::ippool::start: 192.168.17.10
   openstack::network::external::ippool::end: 192.168.17.200
-  openstack::network::external::gateway: 192.168.22.2
-  openstack::network::external::dns: 192.168.22.2
+  openstack::network::external::gateway: 192.168.17.2
+  openstack::network::external::dns: 192.168.17.2
 
   ######## Private Neutron Network
 
@@ -22,10 +22,10 @@
 
   ######## Fixed IPs (controllers)
 
-  openstack::controller::address::api: '192.168.1.37'
-  openstack::controller::address::management: '192.168.1.37'
-  openstack::storage::address::api: '192.168.1.37'
-  openstack::storage::address::management: '192.168.1.37'
+  openstack::controller::address::api: '127.0.0.1'
+  openstack::controller::address::management: '127.0.0.1'
+  openstack::storage::address::api: '127.0.0.1'
+  openstack::storage::address::management: '127.0.0.1'
 
   ######## Database
 
@@ -41,7 +41,7 @@
 
   openstack::mysql::glance::user: 'glance'
   openstack::mysql::glance::pass: 'aqwzsxedc'
-  openstack::glance::api_servers: ['192.168.1.37:9292']
+  openstack::glance::api_servers: ['127.0.0.1:9292']
 
   openstack::mysql::nova::user: 'nova'
   openstack::mysql::nova::pass: 'aqwzsxedc'
@@ -56,7 +56,7 @@
 
   openstack::rabbitmq::user: 'openstack'
   openstack::rabbitmq::password: 'aqwzsxedc'
-  openstack::rabbitmq::hosts: ['192.168.1.37:5672']
+  openstack::rabbitmq::hosts: ['127.0.0.1:5672']
 
   ######## Keystone
 
@@ -107,7 +107,7 @@
   openstack::neutron::service_plugins: ['router', 'firewall', 'lbaas', 'vpnaas', 'metering']
 
   ######## Ceilometer
-  openstack::ceilometer::address::management: '192.168.1.37'
+  openstack::ceilometer::address::management: '127.0.0.1'
   openstack::ceilometer::mongo::username: 'mongo'
   openstack::ceilometer::mongo::password: 'aqwzsxedc'
   openstack::ceilometer::password: 'aqwzsxedc'
@@ -115,8 +115,8 @@
 
   ######## Heat
   openstack::heat::password: 'aqwzsxedc'
-  # openssl rand -hex 32
-  openstack::heat::encryption_key: '0ea819937f0176dbd3271c6b41412a25'
+  # openssl rand -hex 16
+  openstack::heat::encryption_key: 'b165e5dc3f9c896c9c7caece910435d9'
 
 
   ######## Horizon

@@ -27,3 +27,9 @@ fi
 echo "**Generating keypair for instances**"
 nova keypair-add cloud-instances-key > cloud-instances-key
 nova keypair-show cloud-instances-key | grep -E '^Public key.*$' | tee cloud-instances-key.pub
+
+echo "**Gathering informations on network**"
+NET_ID=`neutron net-list | awk '/ private / {print $2}' `
+
+echo "**Booting test instance **"
+nova boot --flavor m1.small --image trusty-server-cloudimg-amd64 --nic net-id=$NET_ID --security-group default --key-name cloud-instances-key first-instance

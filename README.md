@@ -18,9 +18,6 @@ but you can also, install the puppet master on the same node as your OpenStack s
 $ cd puppet-stacktryout/puppetmaster
 $ vagrant up
 $ vagrant ssh
-$ sudo sed -i "s/192.168.1.37/OPENSTACK IP/g" /etc/puppet/hieradata/production/common.yaml
-$ sed for 192.168.1.%
-$ sudo sed -i "s/192.168.1.%/MYSQL_ACCESS_CONFIG/" /etc/puppet/hieradata/production/common.yaml
 $ sudo service apache2 restart
 </code></pre>
 
@@ -52,13 +49,12 @@ $ sudo sh prepare-openstack-server.sh
 
 ## TO-DO
 - Fix Heat Domain Users (keystone user-role-add --user admin --tenant admin --role heat_stack_owner)
+neutron floatingip-create public
+nova floatingip-associate
 
-nova keypair-list | awk '/ heat-instances-key / {print $2}'
-
-## ERROR on OpenStack
-volume_group = cinder-volumes  
-debug with vgs  
-mongo db failed  
-/etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp:    bind_ip => ['127.0.0.1', $::openstack::config::controller_address_management],  
-horizon failed
-check for hardware acceleration with `egrep -c '(vmx|svm)' /proc/cpuinfo` > 0
+## Known errors
+- check volume_group = cinder-volumes on /etc/cinder/cinder.conf
+- debug cinder with vgs and pvs
+- check the file : /etc/puppet/environments/production/modules/openstack/manifests/profile/mongodb.pp:    bind_ip => ['127.0.0.1', $::openstack::config::controller_address_management],  
+- check for hardware acceleration with `egrep -c '(vmx|svm)' /proc/cpuinfo` > 0
+and replace virtualization by qemu if the result is zero on /etc/nova/nova-compute.conf
